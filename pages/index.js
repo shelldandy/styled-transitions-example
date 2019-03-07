@@ -14,6 +14,7 @@ const isIn = status => status === 'entered' || status === 'exited'
 const EmotionWrapper = styled.div`
   position: relative;
   min-height: 4rem;
+  overflow-x: hidden;
 `
 
 const Emotion = styled.h1`
@@ -24,14 +25,16 @@ const Emotion = styled.h1`
   top: 0;
   left: 0;
   margin: 0;
-  transition: opacity ${TRANSITION_TIME}ms;
+  transition: ${TRANSITION_TIME}ms;
 
   ${({status}) => isIn(status) && css`
     opacity: 1;
+    transform: scale(0%);
   `}
 
   ${({status}) => !isIn(status) && css`
     opacity: 0.01;
+    transform: scale(1.2);
   `}
 `
 
@@ -112,7 +115,7 @@ class Example extends Component {
         <TransitionGroup component={EmotionWrapper}>
           <Transition key={emotion} timeout={TRANSITION_TIME}>
             {status => (
-              <Emotion status={status}>{emotion} - {status}</Emotion>
+              <Emotion status={status}>{emotion}</Emotion>
             )}
           </Transition>
         </TransitionGroup>
