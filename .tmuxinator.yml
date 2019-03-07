@@ -1,0 +1,4 @@
+name: styled-transitions
+windows:
+  - editor: eval $EDITOR
+  - main: yarn dev
