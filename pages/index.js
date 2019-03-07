@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
 import { Transition, TransitionGroup } from 'react-transition-group'
 
-const TRANSITION_TIME = 500
+const TRANSITION_TIME = 250
 
 const Wrapper = styled.div`
   padding: 2rem;
   text-align: center;
 `
 
-const isIn = status => status === 'entered'
+const isIn = status => status === 'entered' || status === 'exited'
 
 const EmotionWrapper = styled.div`
   position: relative;
@@ -19,12 +19,12 @@ const EmotionWrapper = styled.div`
 const Emotion = styled.h1`
   color: palevioletred;
   font-size: 3.5rem;
-  transition: opacity ${TRANSITION_TIME}ms;
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   margin: 0;
+  transition: opacity ${TRANSITION_TIME}ms;
 
   ${({status}) => isIn(status) && css`
     opacity: 1;
